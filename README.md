@@ -11,14 +11,6 @@ mvn package
 java -jar target/meal.jar
 ```
 
-## Exercise the application
-```
-curl -X GET http://localhost:8080/simple-greet
-{"message":"Hello World!"}
-```
-
-
-
 ## Try metrics
 
 ```

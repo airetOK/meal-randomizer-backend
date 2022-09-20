@@ -30,26 +30,6 @@ public class MainTest {
     @Inject
     private WebTarget target;
 
-
-    @Test
-    public void testMicroprofileMetrics() {
-        String message = target.path("simple-greet/Joe")
-                .request()
-                .get(String.class);
-
-        assertThat(message, is("Hello Joe"));
-        Counter counter = registry.counter("personalizedGets");
-        double before = counter.getCount();
-
-        message = target.path("simple-greet/Eric")
-                .request()
-                .get(String.class);
-
-        assertThat(message, is("Hello Eric"));
-        double after = counter.getCount();
-        assertEquals(1d, after - before, "Difference in personalized greeting counter between successive calls");
-    }
-
     @Test
     public void testMetrics() throws Exception {
         Response response = target
@@ -66,15 +46,6 @@ public class MainTest {
                 .request()
                 .get();
         assertThat(response.getStatus(), is(200));
-    }
-
-    @Test
-    public void testGreet() throws Exception {
-        Message message = target
-                .path("simple-greet")
-                .request()
-                .get(Message.class);
-        assertThat(message.getMessage(), is("Hello World!"));
     }
                 
 }
