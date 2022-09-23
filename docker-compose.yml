@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8070:8070"
+    environment:
+      - URL_FRONT={URL}
+  front:
+    image: meal-randomizer-front
+    ports:
+      - "4200:80"
