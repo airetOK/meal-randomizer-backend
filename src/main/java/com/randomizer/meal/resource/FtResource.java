@@ -1,4 +1,4 @@
-package com.randomizer.meal;
+package com.randomizer.meal.resource;
 
 import io.helidon.common.reactive.Single;
 import jakarta.ws.rs.GET;

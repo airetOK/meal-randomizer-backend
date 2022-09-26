@@ -1,4 +1,4 @@
-package com.randomizer.meal;
+package com.randomizer.meal.resource;
 
 import io.helidon.microprofile.server.Server;
 import io.helidon.webclient.WebClient;
