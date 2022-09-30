@@ -1,1 +1,1 @@
-web: java -jar target/meal.jar
+web: java -Dserver.port=$PORT -jar target/meal.jar
