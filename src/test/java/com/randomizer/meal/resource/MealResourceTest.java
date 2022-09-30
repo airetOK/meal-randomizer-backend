@@ -14,7 +14,7 @@ class MealResourceTest {
 
     @Test
     void testDefaultGreeting() {
-        Response response = webTarget.path("/meal/random").request().get();
+        Response response = webTarget.path("/meal/v1/random").request().get();
         assertEquals(response.getStatus(), 200);
     }
 }

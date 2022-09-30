@@ -1,5 +1,7 @@
 package com.randomizer.meal.client;
 
+import com.randomizer.meal.entity.Meal;
+import com.randomizer.meal.entity.MealJsonResponse;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.Client;
@@ -26,14 +28,14 @@ public class RestClient
 
     private final Client client = ClientBuilder.newClient();
 
-    public Map<String, Object> getRandomMeal() {
+    public MealJsonResponse getRandomMeal() {
         return get(RANDOM_MEAL);
     }
 
-    private Map<String, Object> get(String url) {
+    private MealJsonResponse get(String url) {
         return client
             .target(url)
             .request(MediaType.APPLICATION_JSON)
-            .get(new GenericType<>(){});
+            .get(MealJsonResponse.class);
     }
 }

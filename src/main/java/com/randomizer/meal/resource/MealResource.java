@@ -14,7 +14,7 @@ import jakarta.ws.rs.core.UriInfo;
 import java.util.logging.Logger;
 
 @ApplicationScoped
-@Path("/meal")
+@Path("/meal/v1")
 public class MealResource
 {
 
