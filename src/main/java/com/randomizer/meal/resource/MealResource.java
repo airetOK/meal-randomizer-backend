@@ -2,6 +2,7 @@ package com.randomizer.meal.resource;
 
 import com.randomizer.meal.client.RestClient;
 import io.helidon.microprofile.cdi.Main;
+import io.helidon.webserver.ServerRequest;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -10,7 +11,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.UriInfo;
 import java.util.logging.Logger;
 
 @ApplicationScoped
@@ -29,10 +29,9 @@ public class MealResource
     @Path("/random")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getRandomMeal(@Context UriInfo uriInfo) {
-        Response res = Response.ok(client.getRandomMeal()).build();
-        LOGGER.info(String.format("Status code for the endpoint %s is %s", uriInfo.getAbsolutePath(), res.getStatus()));
-        return res;
+    public Response getRandomMeal(@Context ServerRequest req) {
+        LOGGER.info(String.format("IP remote address: %s:%d", req.remoteAddress(), req.remotePort()));
+        return Response.ok(client.getRandomMeal()).build();
     }
 
 }

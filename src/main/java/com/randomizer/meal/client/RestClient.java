@@ -1,14 +1,11 @@
 package com.randomizer.meal.client;
 
-import com.randomizer.meal.entity.Meal;
 import com.randomizer.meal.entity.MealJsonResponse;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
-import java.util.Map;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /***
