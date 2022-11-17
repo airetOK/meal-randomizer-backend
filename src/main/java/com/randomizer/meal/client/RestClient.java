@@ -17,10 +17,13 @@ public class RestClient
 {
 
     private final String RANDOM_MEAL;
+    private final String FIRST_LETTER;
 
     @Inject
-    public RestClient(@ConfigProperty(name = "url.meal.random") String url) {
+    public RestClient(@ConfigProperty(name = "url.meal.random") String url,
+                      @ConfigProperty(name = "url.meal.fl") String fl) {
         RANDOM_MEAL = url;
+        FIRST_LETTER = fl;
     }
 
     private final Client client = ClientBuilder.newClient();
@@ -29,10 +32,22 @@ public class RestClient
         return get(RANDOM_MEAL);
     }
 
-    private MealJsonResponse get(String url) {
-        return client
-            .target(url)
-            .request(MediaType.APPLICATION_JSON)
-            .get(MealJsonResponse.class);
+    public MealJsonResponse getMealsByFirstLetter(String firstLetter) {
+        return get(FIRST_LETTER, "f", firstLetter);
     }
+
+    private MealJsonResponse get(String url, String...params) {
+        String queryParam = "";
+        String value = "";
+        if (params.length != 0) {
+            queryParam = params[0];
+            value = params[1];
+        }
+        return client
+                .target(url)
+                .queryParam(queryParam, value)
+                .request(MediaType.APPLICATION_JSON)
+                .get(MealJsonResponse.class);
+    }
+
 }
